@@ -1,0 +1,20 @@
+<#@ include file="Utility\Make\BimlTarget.Obj.csbiml" #>
+<# 
+    List<BimlTarget> targets = new List<BimlTarget>()
+    {
+        new BimlTarget("2012 builds",
+                       @"C:\temp\MakefileBiml\2012",
+                       @"G:\SSIS_Packages\MakefileBiml\MakefileBiml\",
+                       SqlServerVersion.SqlServer2012, 
+                       SsisVersion.Ssis2012, 
+                       SsasVersion.Ssas2008,
+                       SsisDeploymentModel.Package)
+       // ,new BimlTarget("2014 builds",
+       //                 @"C:\temp\MyTarget\2014",
+       //                 @"F:\SSISPkgs\FlatFilesFromAOs\FlatFilesFromAOs\2014",
+       //                 SqlServerVersion.SqlServer2014, 
+       //                 SsisVersion.Ssis2014, 
+       //                 SsasVersion.Ssas2014,
+       //                 SsisDeploymentModel.Package)
+    };
+#>

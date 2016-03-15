@@ -1,0 +1,62 @@
+<#+
+    public static class BimlUtils
+    {
+    	public static string GetErrorId(Validation.ValidationCode validationCode)
+        {
+            return ((int)validationCode).ToString();
+        }
+
+        public static string GetValidationReporterMessage(Validation.ValidationItem item)
+        {
+            // Build a more detailed message for the Output window.
+            StringBuilder builder = new StringBuilder();
+
+            // Check we have a value, and it isn't something useless i.e. "BimlEngine, Version=2.0.0.0, Culture=neutral, PublicKeyToken=dd4a9bc4187e1297"
+            if (!string.IsNullOrEmpty(item.PhaseName) && !item.PhaseName.StartsWith("BimlEngine, Version")) 
+            {
+                builder.AppendFormat("{0}. ", item.PhaseName);
+            }
+
+            GetMessageString(item.Message, ref builder);
+            GetMessageString(item.Recommendation, ref builder);
+
+            if (!string.IsNullOrEmpty(item.PropertyName))
+            {
+                builder.AppendFormat("Property {0}. ", item.PropertyName);
+            }
+
+            if (!string.IsNullOrEmpty(item.SchemaName))
+            {
+                builder.AppendFormat("Schema {0}. ", item.SchemaName);
+            }
+
+            if (item.Exception != null)
+            {
+                // Just show the exception type name, which can help indicate the type of issue, e.g. invalid XML vs invalid BIML
+                // We don't want the full Exception as it is confusing and makes you think something has gone wrong.
+                builder.AppendFormat("Exception type: {0}", item.Exception.GetType().Name);
+            }
+
+            return builder.ToString().TrimEnd();
+        }
+
+        public static void GetMessageString(string input, ref StringBuilder builder)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return;
+            }
+
+            input = input.Trim();
+
+            if (input.EndsWith("."))
+            {
+                builder.AppendFormat("{0} ", input);
+            }
+            else
+            {
+                builder.AppendFormat("{0}. ", input);
+            }
+        }
+    }
+#>    

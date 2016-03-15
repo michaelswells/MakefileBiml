@@ -1,0 +1,30 @@
+<#@ import namespace="Varigence.Languages.Biml" #>
+<#@ import namespace="Varigence.Languages.Biml.Platform" #>
+<#+
+    public class BimlTarget
+    {
+        public string Name { get; set; }
+        public string TargetDir { get; set; }
+        public string PackagePath { get; set; }
+        public SqlServerVersion Mssql { get; set; } 
+        public SsisVersion Ssis { get; set; }
+        public SsasVersion Ssas { get; set; }
+        public SsisDeploymentModel Model { get; set; }
+        public BimlTarget(string name,
+                          string targetDir,
+                          string packagePath,
+                          SqlServerVersion mssql, 
+                          SsisVersion ssis, 
+                          SsasVersion ssas, 
+                          SsisDeploymentModel model)
+        {
+            Name = name;
+            TargetDir = targetDir;
+            PackagePath = packagePath;
+            Mssql = mssql;
+            Ssis = ssis;
+            Ssas = ssas;
+            Model = model;
+        }
+    }
+#>

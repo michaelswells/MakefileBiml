@@ -1,0 +1,10 @@
+<#@ include file="Biml\Config.csbiml" #>
+<#= CallBimlScript(Config.CompileScriptLocation, 
+    new List<string>() {
+        Config.BimlRoot + @"CommonTiers\2.FileFormat.biml",
+        Config.BimlRoot + @"CommonTiers\3.Connections.biml",
+        Config.BimlRoot + @"1_BuildFirstPkg\4.Packages.biml"
+        }
+    , Config.OverwritePackages
+    , Config.SaveCompiledBiml)
+#>
